@@ -6,7 +6,7 @@ from __future__ import annotations
 
 from collections.abc import Callable
 
-
+# The trapezoidal rule is a numerical method to approximate the area under a curve
 def trapezoidal_area(
     fnc: Callable[[float], float],
     x_start: float,
@@ -33,17 +33,17 @@ def trapezoidal_area(
     >>> f"{trapezoidal_area(f, -4.0, 4.0, 10000):.4f}"
     '384.0000'
     """
-    x1 = x_start
+    xone = x_start
     fx1 = fnc(x_start)
     area = 0.0
     for _ in range(steps):
         # Approximates small segments of curve as linear and solve
         # for trapezoidal area
-        x2 = (x_end - x_start) / steps + x1
+        x2 = (x_end - x_start) / steps + xone
         fx2 = fnc(x2)
-        area += abs(fx2 + fx1) * (x2 - x1) / 2
+        area += abs(fx2 + fx1) * (x2 - xone) / 2
         # Increment step
-        x1 = x2
+        xone = x2
         fx1 = fx2
     return area
 
